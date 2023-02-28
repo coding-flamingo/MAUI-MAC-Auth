@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MAUIMACAuth.Data;
+using MAUIMACAuth.Services;
 
 namespace MAUIMACAuth;
 
@@ -16,6 +17,7 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddMauiBlazorWebView();
+		builder.Services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
 #if DEBUG
 		builder.Services.AddBlazorWebViewDeveloperTools();

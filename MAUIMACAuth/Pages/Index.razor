@@ -1,5 +1,15 @@
 ﻿@page "/"
+@using MAUIMACAuth.Services;
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+<button class="btn btn-primary" @onclick="LoginAsync">Login</button>
+
+@code
+{
+    [Inject] IAuthenticationService _authService { get; set; }
+    private async Task LoginAsync()
+    {
+        await _authService.GetTokenAsync("", AuthCacheConfig.Scopes, false);
+    }
+}
