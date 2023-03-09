@@ -16,10 +16,10 @@ public interface IAuthenticationService
 public static class AuthCacheConfig
 {
     // App settings
-    public static readonly string[] Scopes = new[] { "68554b48-233f-42b4-9aa7-2eadca4d7727//API.Access" };
+    public static readonly string[] Scopes = new[] { "040a74c6-5df7-485c-9133-9d5d4c953717/API.Access" };
     public const string Authority = "https://login.microsoftonline.com/common";
-    public const string ClientId = "eddb4ead-89dd-4da8-9196-09c7ea82d724";
-    public const string RedirectURI = "http://localhost:6969";
+    public const string ClientId = "91e2b896-1ef4-4c2e-bd36-e3374926ed77";
+    public const string RedirectURI = "mauimac://callback";
 }
 
 public class AuthenticationService : IAuthenticationService
@@ -27,11 +27,24 @@ public class AuthenticationService : IAuthenticationService
     
     public async Task<string> GetTokenAsync(string userName, string[] scopes, bool silentOnly)
     {
-        WebAuthenticatorResult result = await WebAuthenticator.AuthenticateAsync(
+        try
+        {
+            WebAuthenticatorResult result = await WebAuthenticator.AuthenticateAsync(
             new Uri(GenerateCodeUri(scopes)), new Uri(AuthCacheConfig.RedirectURI));
-        //todo check what happens when it is just closed
-        return result.RefreshToken;
+            var code = result.Properties["code"];
 
+            return string.Empty;
+        }
+        catch(Exception ex)
+        {
+            return string.Empty;
+        }
+    }
+
+    private async Task GetTokenFromAzAsync(string code)
+    {
+        var loginPayload = new List<KeyValuePair<string, string>>();
+        
     }
 
     private string GenerateCodeUri(string[] scopes)

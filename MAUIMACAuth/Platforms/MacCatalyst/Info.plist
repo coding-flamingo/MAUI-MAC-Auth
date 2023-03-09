@@ -24,6 +24,19 @@
         <string>UIInterfaceOrientationLandscapeLeft</string>
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+        <key>CFBundleURLName</key>
+        <string>MauiAuthApp</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>mauimac</string>
+        </array>
+        <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+        </dict>
+    </array>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/appicon.appiconset</string>
 </dict>
