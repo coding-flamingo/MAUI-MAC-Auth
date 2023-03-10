@@ -10,6 +10,6 @@
     [Inject] IAuthenticationService _authService { get; set; }
     private async Task LoginAsync()
     {
-        await _authService.GetTokenAsync("", AuthCacheConfig.Scopes, false);
+        await _authService.GetTokenAsync( AuthCacheConfig.Scopes, false);
     }
 }
